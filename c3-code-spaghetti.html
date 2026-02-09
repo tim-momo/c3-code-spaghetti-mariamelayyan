@@ -9,47 +9,92 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <style>
+        /**
+        * Composant : Card de produit
+        *
+        * Utilisé sur : Page d'acceuil et de produits
+        * Variantes : --featured(mise en avant), --compact (version réduite)
+        *
+        * Structure : 
+        * - .product-card : Conteneur principal
+        * - .product-card_image : Image du produit
+        * - .product-card_title : Nom du produit
+        * - .product-card_description : Description du produit
+        * - .product-card_price : Prix du produit
+        * - .product-card_button : Bouton d'achat du produit 
+        */
+        :root {
+            --header-card: #2c3e50;
+            --accent-card: #e74c3c;
+            --text-card: #7f8c8d;
+            --border-card: #b6b6be;
+            --background-card: white;
+            --price-card: #27ae60;
+            --button-card: #3498db;
+            --button-hover-card: #2980b9;
+        }
         body{
             display: flex;
             gap: 20px;
             align-items: flex-start;
             font-family: "Poppins", sans-serif;
         }
-        .c {
+        .product-card {
             width: 300px;
-            border: 1px solid #b6b6be;
+            border: 1px solid var(--border-card);
             padding: 20px;
             margin: 20px;
-            background: white;
+            background: var(--background-card);
             border-radius: 8px;
         }
-        .c img {
+        /* Variante pour les cartes compactes */
+        .product-card--compact {
+            display: flex;
+            gap: 15px;
+        }
+        /* Variante pour les produits mis en avant */
+        .product-card--featured {
+            border: 3px solid var(--accent-card);
+            position: relative;
+        }
+        .product-card_image {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 4px;
         }
-        .c h2 {
+        .product-card_title {
             font-size: 24px;
-            color: #2c3e50;
+            color: var(--header-card);
             margin: 15px 0 10px 0;
             font-weight: 600;
         }
-        .c p {
+        /* Variante pour les cartes compactes */
+        .product-card--compact .product-card_title {
             font-size: 14px;
-            color: #7f8c8d;
+            margin: 0 0 8px 0;
+        }
+        .product-card_description {
+            font-size: 14px;
+            color: var(--text-card);
             margin: 0 0 15px 0;
             line-height: 1.6;
         }
-        .c .p {
+        /* Variante pour la description des cartes compactes */
+        .product-card--compact .product-card_description {
+        font-size: 10px;
+        margin: 0 0 17px 0;
+        line-height: normal;
+        }
+        .product-card_price {
             font-size: 20px;
-            color: #27ae60;
+            color: var(--price-card);
             font-weight: bold;
             margin: 0 0 15px 0;
         }
-        .c button {
-            background: #3498db;
-            color: white;
+        .product-card_button {
+            background: var(--button-card);
+            color: var(--background-card);
             border: none;
             padding: 12px 24px;
             cursor: pointer;
@@ -57,13 +102,18 @@
             font-size: 14px;
             width: 100%;
         }
-        .c button:hover {
-            background: #2980b9;
+        /* Variante pour les boutons des cartes compactes */
+        .product-card--compact .product-card_button {
+            font-size: 10px;
         }
-        .badge {
+        .product-card_button:hover {
+            background: var(--button-hover-card);
+        }
+        /* Badge pour les produits mis en avant */
+        .product-card--featured .product-card_badge{
             display: inline-block;
-            background: #e74c3c;
-            color: white;
+            background: var(--accent-card);
+            color: var(--background-card);
             padding: 4px 8px;
             border-radius: 3px;
             font-size: 10px;
@@ -71,121 +121,34 @@
             top: 10px;
             right: 10px;
         }
-        .c2 {
-            width: 300px;
-            border: 1px solid #b6b6be;
-            padding: 20px;
-            margin: 20px;
-            background: white;
-            border-radius: 8px;
-            display: flex;
-            gap: 15px;
-        }
-        .c2 img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .c2 h3 {
-            font-size: 14px;
-            color: #2c3e50;
-            margin: 0 0 8px 0;
-        }
-        .c2 p {
-            font-size: 10px;
-            color: #7f8c8d;
-            margin: 0 0 17px 0;
-        }
-        .c2 button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 10px;
-            width: 100%;
-        }
-        .c2 button:hover {
-            background: #2980b9;
-        }
-
-        .c3 {
-            width: 300px;
-            border: 3px solid #e74c3c;
-            padding: 20px;
-            margin: 20px;
-            background: white;
-            border-radius: 8px;
-            position: relative;
-        }
-        .c3 img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-        .c3 h2 {
-            font-size: 24px;
-            color: #2c3e50;
-            margin: 15px 0 10px 0;
-            font-weight: 600;
-        }
-        .c3 p {
-            font-size: 14px;
-            color: #7f8c8d;
-            margin: 0 0 15px 0;
-            line-height: 1.6;
-        }
-        .p2 {
-            font-size: 20px;
-            color: #27ae60;
-            font-weight: bold;
-            margin: 0 0 15px 0;
-        }
-        .c3 button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
-            width: 100%;
-        }
-        .c3 button:hover {
-            background: #2980b9;
-        }
     </style>
 </head>
 <body>
-    <div class="c">
-   
-        <img src="https://static.photos/technology/320x240/37" alt="Produit">
-        <h2>Nom du Produit 1</h2>
-        <p>Description courte du produit qui donne envie d'acheter.</p>
-        <div class="p">1149,99 $</div>
-        <button>Ajouter au panier</button>
+    <div class="product-card">
+        <img src="https://static.photos/technology/320x240/37" alt="Produit" class="product-card_image">
+        <h2 class="product-card_title">Nom du Produit 1</h2>
+        <p class="product-card_description">Description courte du produit qui donne envie d'acheter.</p>
+        <div class="product-card_price">1149,99 $</div>
+        <button class="product-card_button">Ajouter au panier</button>
     </div>
 
 
-    <div class="c2">
-        <img src="https://static.photos/technology/100x100/130" alt="Mini produit">
+    <div class="product-card product-card--compact">
+        <img src="https://static.photos/technology/100x100/130" alt="Mini produit" class="product-card_image">
         <div>
-            <h3>Nom du produit mini 2</h3>
-            <p>Description rapide</p>
-            <button>Ajouter au panier</button>
+            <h3 class="product-card_title">Nom du produit mini 2</h3>
+            <p class="product-card_description">Description rapide</p>
+            <button class="product-card_button">Ajouter au panier</button>
         </div>
     </div>
 
-    <div class="c3">
-        <span class="badge">NOUVEAU</span>
-        <img src="https://static.photos/gaming/320x240/30" alt="Produit">
-        <h2>Nom du Produit 3</h2>
-        <p>Description courte du produit qui donne envie d'acheter.</p>
-        <div class="p2">1120,99 $</div>
-        <button>Ajouter au panier</button>
+    <div class="product-card product-card--featured">
+        <span class="product-card_badge">NOUVEAU</span>
+        <img src="https://static.photos/gaming/320x240/30" alt="Produit" class="product-card_image">
+        <h2 class="product-card_title">Nom du Produit 3</h2>
+        <p class="product-card_description">Description courte du produit qui donne envie d'acheter.</p>
+        <div class="product-card_price">1120,99 $</div>
+        <button class="product-card_button">Ajouter au panier</button>
     </div>
 </body>
 </html>
